@@ -1,0 +1,701 @@
+/*
+  What's Up WordPress? - Monitor your WordPress websites from your desktop
+  Copyright (C) 2010 James Dimick <mail@jamesdimick.com> - http://www.JamesDimick.com/
+
+  Project Details: http://www.jamesdimick.com/creations/whats-up-wordpress/
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+@-webkit-keyframes pulse {
+	0% {
+		opacity: 0.3;
+		color: #fff;
+	}
+
+	40% {
+		opacity: 1;
+		color: OrangeRed;
+	}
+
+	100% {
+		opacity: 0.3;
+		color: #fff;
+	}
+}
+
+* {
+	cursor: default;
+	-webkit-user-select: none !important;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font: message-box;
+	color: #000;
+	background: #aaa;
+}
+
+input {
+	font: caption;
+	text-shadow: 1px 1px 0 #fff;
+	background: transparent -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#eee)) 0 0 no-repeat;
+	width: 100%;
+	padding: 4px 6px;
+	border: 1px solid #000;
+	-webkit-border-radius: 4px;
+	-webkit-box-shadow: inset #fff 0 0 0 1px;
+}
+
+input:hover, input:focus {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff));
+}
+
+input:focus {
+	outline-color: #39f;
+}
+
+input::-webkit-input-placeholder {
+	color: #000;
+}
+
+input[type='text'], input[type='password'] {
+	cursor: text;
+	-webkit-user-select: auto !important;
+}
+
+input[type='button'] {
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+	background: transparent -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#444)) 0 0 no-repeat;
+	width: auto;
+	padding: 3px 10px;
+	-webkit-border-radius: 8px;
+	outline: none;
+	-webkit-box-shadow: inset rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.2) 0 0 0 1px, inset rgba(255, 255, 255, 0.15) 0 11px 0;
+}
+
+input[type='button']:hover {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#bbb), to(#555));
+}
+
+input[type='button']:focus {
+	-webkit-box-shadow: inset #39f 0 0 0 1px, inset rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.2) 0 0 0 1px, inset rgba(255, 255, 255, 0.15) 0 11px 0;
+}
+
+input[type='button'].primary {
+	font-weight: bold;
+}
+
+input[type='button']:disabled {
+	pointer-events: none !important;
+	opacity: 0.5;
+	color: #555;
+}
+
+input.error {
+	color: red;
+	border-color: rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: inset #fff 0 0 0 1px, OrangeRed 0 0 3px 1px;
+}
+
+input.error:focus {
+	color: #000;
+	border-color: #000;
+	-webkit-box-shadow: inset #fff 0 0 0 1px;
+}
+
+input, a, a * {
+	cursor: pointer;
+}
+
+h1 {
+	position: relative;
+	z-index: 1;
+	text-align: right;
+	background: #333 url('app://sprite.png') 0 0 no-repeat;
+	height: 50px;
+}
+
+h1 span#title {
+	display: none;
+}
+
+h1 span#nav {
+	position: absolute;
+	top: 8px;
+	right: 11px;
+}
+
+h1 span.navbtn {
+	display: block;
+	position: relative;
+	float: left;
+	height: 34px;
+	width: 34px;
+	margin-right: -3px;
+}
+
+h1 span.navbtn:last-child {
+	margin-right: 0;
+}
+
+h1 span.navbtn span.normal, h1 span.navbtn span.hover {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: transparent url('app://sprite.png') 0 -50px no-repeat;
+	height: 100%;
+	width: 100%;
+}
+
+#navaddbtn span.normal { background-position: 0 -50px; } #navaddbtn span.hover { background-position: 0 -84px; }
+#navprefbtn span.normal { background-position: -34px -50px; } #navprefbtn span.hover { background-position: -34px -84px; }
+#navaboutbtn span.normal { background-position: -68px -50px; } #navaboutbtn span.hover { background-position: -68px -84px; }
+
+h1 span.navbtn span.hover {
+	opacity: 0;
+}
+
+h1 span.navbtn input {
+	position: relative;
+	z-index: 2;
+	text-indent: -1000em;
+	background: none !important;
+	height: 28px !important;
+	width: 28px !important;
+	padding: 0 !important;
+	border: 0 !important;
+	-webkit-border-radius: 0 !important;
+	-webkit-box-shadow: none !important;
+	margin: 3px;
+}
+
+#donate {
+	opacity: 0.3;
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: rgba(255, 255, 255, 0.4) url('app://sprite.png') -105px -95px no-repeat;
+	height: 16px;
+	width: 16px;
+	border-left: 1px solid rgba(0, 0, 0, 0.8);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+	-webkit-border-bottom-left-radius: 80px;
+	-webkit-box-shadow: rgba(255, 255, 255, 0.15) 0 0 0 1px;
+}
+
+#donate:hover {
+	opacity: 1;
+	background-color: #39f;
+	-webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 0 0 1px;
+}
+
+#donate span {
+	display: none;
+}
+
+#sitesframe {
+	position: fixed;
+	top: 50px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+#sitesframe iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 100%;
+	width: 100%;
+	border: 0;
+}
+
+#sites {
+	line-height: 18px;
+	list-style: none;
+}
+
+#sites:before, #sites:after {
+	content: '';
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 10000;
+}
+
+#sites:before {
+	top: 0;
+	-webkit-box-shadow: #c0c0c0 0 0 0 1px, #aaa 0 0 5px 6px;
+}
+
+#sites:after {
+	bottom: 0;
+	-webkit-box-shadow: #aaa 0 0 5px 6px;
+}
+
+#sites li {
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.9);
+	background: transparent -webkit-gradient(linear, left bottom, left top, from(#c3c3c3), to(#eee)) 0 0 no-repeat;
+	padding: 12px 14px 10px 14px;
+	border: 1px solid #555;
+	-webkit-border-radius: 8px;
+	border-top-color: #666;
+	-webkit-box-shadow: inset #fff 0 1px 0 0, inset #d5d5d5 0 -1px 0 0, inset #eee 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 3px 5px;
+	margin: 15px 10px;
+}
+
+#sites li h3 {
+	position: relative;
+	font-size: 13px;
+	line-height: normal;
+	margin: 0 0 5px 0;
+}
+
+#sites li h3 img {
+	vertical-align: bottom !important;
+}
+
+#sites li h3 span {
+	opacity: 0.5;
+	position: absolute;
+	top: 3px;
+	right: 0;
+}
+
+#sites li h3 span:hover {
+	opacity: 1;
+}
+
+#sites li h3 span a {
+	display: inline-block;
+	text-indent: -10000;
+	background-color: #c0c0c0;
+	-webkit-mask-image: url('app://sprite.png');
+	-webkit-mask-position: -121px -83px;
+	-webkit-mask-repeat: no-repeat;
+	height: 9px;
+	width: 9px;
+	border: 0;
+	margin-right: 5px;
+}
+
+#sites li h3 span a:last-child {
+	margin-right: 0;
+}
+
+#sites li h3 span a.move { cursor: move; -webkit-mask-position: -103px -83px; }
+#sites li h3 span a.edit { -webkit-mask-position: -112px -83px; }
+
+#sites li h3 a {
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.13);
+	border: 0 !important;
+}
+
+#sites li.error {
+	font-size: 10px;
+}
+
+#sites li.error, #sites li.error * {
+	line-height: 14px;
+}
+
+#sites li.error h3, #sites li.error h3 * {
+	line-height: normal !important;
+}
+
+#sites li ol {
+	padding: 5px 0 0 20px;
+}
+
+#sites li ol li {
+	font-weight: bold;
+	background: none;
+	padding: 0;
+	border: 0;
+	-webkit-box-shadow: none;
+	margin: 0;
+}
+
+#sites li ol li span {
+	font-weight: normal;
+}
+
+#sites.none li {
+	position: absolute;
+	text-align: center;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+	line-height: 10px;
+	color: rgba(0, 0, 0, 0.6);
+	background: none;
+	padding: 0;
+	border: 0;
+	-webkit-box-shadow: none;
+	margin: auto;
+}
+
+#sites.none li h3 {
+	font-size: 23px;
+	font-weight: normal;
+}
+
+.dialog {
+	display: none;
+	position: absolute;
+	top: 50px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	text-shadow: 1px 1px 0 #000;
+	background-color: rgba(170, 170, 170, 0.9);
+	border-top: 1px solid #bbb;
+}
+
+.dialog > div {
+	position: absolute;
+	top: 30px;
+	left: 30px;
+	right: 30px;
+	color: #ccc;
+	background: -webkit-gradient(linear, left top, left bottom, from(#777), to(#222));
+	padding: 15px 18px;
+	border: 1px solid #000;
+	-webkit-border-radius: 8px;
+	border-top-color: #444;
+	-webkit-box-shadow: inset #393939 0 -1px 0, inset #888 0 1px 0, rgba(0, 0, 0, 0.4) 1px 1px 3px;
+	margin: auto;
+}
+
+.dialog > div h3 {
+	position: relative;
+	font-size: 13px;
+	line-height: normal;
+	color: #fff;
+	margin-bottom: 8px;
+}
+
+.dialog > div table {
+	font-size: 12px;
+	color: #ccc;
+	width: 100%;
+}
+
+.dialog > div table tr td {
+	width: 50%;
+}
+
+.dialog > div table tr th:first-child, .dialog > div table tr td:first-child {
+	white-space: nowrap;
+}
+
+.dialog > div table tr td input {
+	margin-bottom: 6px;
+}
+
+.dialog > div table tr#buttons td input {
+	margin: 6px 0 0 0;
+}
+
+.dialog a {
+	color: #eee;
+	border-bottom-color: #888;
+}
+
+#deletesite input {
+	min-width: 60px;
+}
+
+#deletesite input:first-child {
+	margin-right: 4px;
+}
+
+.helpbtn {
+	opacity: 0.3;
+	float: right;
+	cursor: help;
+	color: #fff;
+	border: 0;
+}
+
+.helpbtn:hover {
+	opacity: 1;
+	color: #fff;
+	padding: 10px 10px 10px 30px;
+	margin: -10px -10px -10px -30px;
+}
+
+.helpbtn.helperr {
+	-webkit-animation-name: pulse;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: ease-in-out;
+}
+
+.helpbtn.helperr:hover {
+	-webkit-animation-name: none;
+}
+
+.helptip {
+	display: none;
+	position: absolute;
+	top: 17px;
+	right: 0;
+	z-index: 500000;
+	font-size: 10px;
+	font-weight: normal;
+	text-shadow: none;
+	color: InfoText;
+	background-color: InfoBackground;
+	max-width: 200px;
+	padding: 5px 8px;
+	-webkit-border-radius: 3px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.5) 1px 1px 3px;
+}
+
+.helptip, .helptip * {
+	cursor: help;
+}
+
+.helptip a, .helptip a * {
+	cursor: pointer;
+	color: #000;
+	border-bottom-color: rgba(0, 0, 0, 0.3);
+}
+
+.helptip strong {
+	display: block;
+	margin-top: 5px;
+}
+
+.helptip strong:first-child {
+	margin-top: 0;
+}
+
+.helpbtn:hover .helptip {
+	display: block;
+}
+
+.ui-spinner {
+	display: inline-block;
+}
+
+.ui-spinner-input {
+	vertical-align: top !important;
+	width: auto;
+	margin: 0 2px 0 0 !important;
+}
+
+.ui-spinner-button-wrap {
+	display: inline-block;
+	height: 100%;
+	width: 13px;
+}
+
+.ui-spinner-button {
+	display: block;
+	overflow: hidden;
+	font-size: 6px !important;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+	line-height: 0;
+	color: #000 !important;
+	background: transparent -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#444)) 0 0 no-repeat;
+	height: 50%;
+	width: 100%;
+	padding: 5px 3px;
+	border: 1px solid #000 !important;
+	-webkit-border-radius: 888px;
+	outline: none;
+	-webkit-box-shadow: inset rgba(255, 255, 255, 0.2) 0 0 0 1px;
+	-webkit-box-sizing: border-box;
+}
+
+.ui-spinner-button:active, .ui-spinner-button:hover, .ui-spinner-button:focus {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#bbb), to(#555));
+}
+
+.ui-spinner-up {
+	-webkit-border-bottom-left-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+}
+
+.ui-spinner-down {
+	-webkit-border-top-left-radius: 0;
+	-webkit-border-top-right-radius: 0;
+	margin-top: -1px;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+a:hover, a:active {
+	color: Highlight;
+	border-bottom-color: Highlight;
+}
+
+.textcenter {
+	text-align: center;
+}
+
+.textright {
+	text-align: right;
+}
+
+.pad6top {
+	padding-top: 6px;
+}
+
+.pad2left {
+	padding-left: 2px;
+}
+
+.pad2right {
+	padding-right: 2px;
+}
+
+.pad3left {
+	padding-left: 3px;
+}
+
+.pad3right {
+	padding-right: 3px;
+}
+
+.margtop {
+	margin-top: 12px;
+}
+
+.margbot {
+	margin-bottom: 6px;
+}
+
+.nomarg {
+	margin: 0 !important;
+}
+
+.posrel {
+	display: block;
+	position: relative !important;
+	padding-right: 17px;
+}
+
+.biglogoleft, .confirmiconleft {
+	position: relative;
+	line-height: 16px;
+	min-height: 80px;
+	padding-left: 95px;
+}
+
+.biglogoleft span, .confirmiconleft span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0.3;
+	background: transparent url('app://sprite.png') -470px -50px no-repeat;
+	height: 80px;
+	width: 80px;
+	-webkit-border-radius: 500px;
+	-webkit-box-shadow: #000 1px 1px 0;
+}
+
+.confirmiconleft {
+	min-height: 30px;
+	padding-left: 43px;
+}
+
+.confirmiconleft span {
+	opacity: 0.4;
+	background: transparent url('app://sprite.png') -102px -50px no-repeat;
+	-webkit-background-size: auto;
+	height: 30px;
+	width: 30px;
+}
+
+.important {
+	color: OrangeRed;
+}
+
+a.important:hover, a.important:active {
+	color: red;
+	border-bottom-color: red;
+}
+
+a img {
+	border: 0 !important;
+}
+
+.deleting {
+	background: transparent -webkit-gradient(linear, left bottom, left top, from(#fcc), to(#fff)) 0 0 no-repeat !important;
+	-webkit-box-shadow: inset #fff 0 1px 0 0, inset #fbb 0 -1px 0 0, inset #fbb 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 3px 5px !important;
+}
+
+.move-cursor {
+	cursor: move !important;
+}
+
+.sortable-selected {
+	-webkit-box-shadow: inset #fff 0 1px 0 0, inset #d5d5d5 0 -1px 0 0, inset #eee 0 0 0 1px, #39f 0 0 5px, rgba(0, 0, 0, 0.3) 0 3px 5px !important;
+}
+
+.sortable-selected h3 span {
+	opacity: 1 !important;
+}
+
+.sortable-selected h3 span .move {
+	background-color: #39f !important;
+}
+
+#loading {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 50000;
+	color: #333;
+	background-color: #ddd;
+	padding: 1px 7px 2px 7px;
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 3px;
+}
+
+#msg {
+	position: absolute;
+	top: 50px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(170, 170, 170, 0.9);
+}
+
+#msg span {
+	position: absolute;
+	font-size: 23px;
+	font-weight: normal;
+	text-shadow: 1px 1px 0 #fff;
+	text-align: center;
+	color: #333;
+	background-color: #ddd;
+	padding: 10px 14px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 3px;
+	margin: auto;
+}

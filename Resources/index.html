@@ -1,0 +1,72 @@
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"><link type="text/css" href="app://main.css" rel="stylesheet"></head>
+
+	<body>
+		<h1 id="banner"><span id="title">What&rsquo;s Up WordPress?</span><span id="nav"><span id="navaddbtn" class="navbtn"><span class="normal"></span><span class="hover"></span><input type="button" value="Add a New Website" title="Add a New Website"></span><span id="navprefbtn" class="navbtn"><span class="normal"></span><span class="hover"></span><input type="button" value="Prefrences" title="Prefrences"></span><span id="navaboutbtn" class="navbtn"><span class="normal"></span><span class="hover"></span><input type="button" value="About This Application" title="About This Application"></span></span><a href="http://www.jamesdimick.com/donate/" id="donate" title="Donate to the Author"><span>$</span></a></h1>
+		<div id="sitesframe"><iframe src="app://iframe.html"></iframe></div>
+
+		<div id="addsite" class="dialog"><div>
+			<h3>Add a Website&hellip;<span class="helpbtn">?<span class="helptip"><strong>URL</strong>The URL where your WordPress installation is located. The proper <a href="http://www.jamesdimick.com/creations/whats-up-wordpress/">plugin</a> must be installed and activated at this location.<strong>Username</strong>The username of a valid WordPress user which has proper permissions.<strong>Password</strong>The password for the user.</span></span></h3>
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td colspan="2"><input type="text" name="addsite_url" id="addsite_url" tabindex="1" placeholder="Website URL&hellip;"></td>
+				</tr>
+
+				<tr>
+					<td class="textright pad3right"><input type="text" name="addsite_user" id="addsite_user" tabindex="2" placeholder="Username&hellip;"></td>
+					<td class="pad3left"><input type="password" name="addsite_pass" id="addsite_pass" tabindex="3" placeholder="Password&hellip;"></td>
+				</tr>
+
+				<tr id="buttons">
+					<td class="textright pad2right"><input type="button" id="addsite_cancel" value="Cancel" tabindex="5"></td>
+					<td class="pad2left"><input type="button" id="addsite_submit" value="Add Website" class="primary" tabindex="4"></td>
+				</tr>
+			</table>
+		</div></div>
+
+		<div id="editsite" class="dialog"><div>
+			<h3>Edit Website&hellip;<span class="helpbtn">?<span class="helptip"><strong>URL</strong>The URL where your WordPress installation is located. The proper <a href="">plugin</a> must be installed and activated at this location.<strong>Username</strong>The username of a valid WordPress user which has proper permissions.<strong>Password</strong>The password for the user.</span></span></h3>
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td colspan="2"><input type="text" name="editsite_url" id="editsite_url" tabindex="6" placeholder="Website URL&hellip;"></td>
+				</tr>
+
+				<tr>
+					<td class="textright pad3right"><input type="text" name="editsite_user" id="editsite_user" tabindex="7" placeholder="Username&hellip;"></td>
+					<td class="pad3left"><input type="password" name="editsite_pass" id="editsite_pass" tabindex="8" placeholder="Password&hellip;"></td>
+				</tr>
+
+				<tr id="buttons">
+					<td class="textright pad2right"><input type="button" id="editsite_cancel" value="Cancel" tabindex="10"></td>
+					<td class="pad2left"><input type="button" id="editsite_submit" value="Save Changes" class="primary" tabindex="9"></td>
+				</tr>
+			</table>
+		</div></div>
+
+		<div id="deletesite" class="dialog"><div>
+			<h3>Delete this Website?</h3>
+			<p class="confirmiconleft"><span><!----></span>Are you sure you want to delete this website from the list?</p>
+			<p class="textcenter margtop"><input type="button" id="no" value="No" tabindex="12"><input type="button" id="yes" value="Yes" class="primary" tabindex="11"></p>
+		</div></div>
+
+		<div id="preferences" class="dialog"><div>
+			<h3>Preferences<span class="helpbtn">?<span class="helptip"><strong>Update Frequency</strong>How often the data for each WordPress website will be updated in minutes. [Between 1 and 1440]</span></span></h3>
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<th class="textright pad3right">Update Frequency:</th>
+					<td class="pad3left vertalign"><input type="text" name="prefs_updatefreq" id="prefs_updatefreq" size="4" maxlength="4" tabindex="13">&ensp;<span style="vertical-align:20%">minutes</span></td>
+				</tr>
+
+				<tr id="buttons">
+					<td class="textright pad2right pad6top"><input type="button" id="prefs_cancel" value="Cancel" tabindex="15"></td>
+					<td class="pad2left pad6top"><input type="button" id="prefs_submit" value="Save Changes" class="primary" tabindex="14"></td>
+				</tr>
+			</table>
+		</div></div>
+
+		<div id="about" class="dialog"><div>
+			<h3>About What&rsquo;s Up WordPress?</h3>
+			<p class="biglogoleft"><span><!----></span>What&rsquo;s Up WordPress? was developed and is maintained by <a href="http://www.jamesdimick.com/">James Dimick</a>. This application is copyright &copy; by him. All rights are reserved. However, this <strong>is</strong> an open source project. All the application code is openly available. Contributions are always welcome! You can find out more at <a href="http://www.jamesdimick.com/creations/whats-up-wordpress/">the official project page</a>.</p>
+			<p class="textcenter margtop"><input type="button" id="done" value="Done" class="primary" tabindex="16"></p>
+		</div></div>
+	</body>
+</html>
