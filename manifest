@@ -1,9 +1,9 @@
-#appname:whatsupwordpress
+#appname:What's Up WordPress
 #appid:com.jamesdimick.whatsupwordpress
 #publisher:James Dimick
-#image:icon4.png
+#image:icon.png
 #url:http://www.jamesdimick.com/
-#guid:fedab041-59c6-49f8-9e1f-3e01def8d79a
+#guid:34a79606-97d9-4230-bc94-cec98f40d60f
 #desc:Monitor your WordPress websites from your desktop
 #type:desktop
 runtime:0.8.0
