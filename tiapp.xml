@@ -28,4 +28,6 @@
 <visible>false</visible>
 <analytics>false</analytics>
 </window>
+<dialog-bmp>Resources/installer_dialog.bmp</dialog-bmp>
+<banner-bmp>Resources/installer_banner.bmp</banner-bmp>
 </ti:app>
