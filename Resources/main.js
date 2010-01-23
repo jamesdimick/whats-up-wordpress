@@ -20,9 +20,9 @@
 
 $(function(){
 	var win = Titanium.UI.getCurrentWindow(),
-	icon = Titanium.UI.setIcon('app://icon.png'),
-	dock = Titanium.UI.setDockIcon('app://icon.png'),
-	tray = Titanium.UI.addTray('app://icon4.png'),
+	icon = Titanium.UI.setIcon('app://icon.ico'),
+	dock = Titanium.UI.setDockIcon('app://icon.ico'),
+	tray = Titanium.UI.addTray('app://icon.ico'),
 	menu = Titanium.UI.createMenu(),
 	show = menu.addCheckItem('Visible', function(){if(win.isVisible()){hide_all_dialogs();win.setVisible(false);show.setState(false);}else{win.setVisible(true);show.setState(true);win.focus();}}),
 	sep1 = menu.addSeparatorItem(),
