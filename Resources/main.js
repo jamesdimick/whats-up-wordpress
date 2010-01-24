@@ -42,7 +42,7 @@ $(function(){
 	$('#donate', top.document).click(function(){Titanium.Desktop.openURL($(this).attr('href'));return false;});
 	$('#sites').html('').removeClass('none');
 	if(sites !== false) {
-		populate_list(sites, false);
+		setTimeout(populate_list, 1000, sites, false);
 	} else {
 		$('#sites').addClass('none');
 		$('#sites').prepend('<li id="nosites"><h3>No Websites Have Been Added&hellip;</h3>Click the &ldquo;<em>Add a New Website</em>&rdquo; button above to get started</li>');
